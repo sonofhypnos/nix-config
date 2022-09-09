@@ -12,7 +12,7 @@
       "https://github.com/NixOS/nixos-hardware/archive/936e4649098d6a5e0762058cb7687be1b2d90550.tar.gz"
     }/raspberry-pi/4"
     <home-manager/nixos>
-    # /home/tassilo/home_manager.nix
+    ./vim.nix
   ];
   #test eve
 
@@ -33,11 +33,31 @@
   networking.useDHCP = false;
   networking.interfaces.eth0.useDHCP = true;
   networking.interfaces.wlan0.useDHCP = true;
+  
+   nixpkgs.overlays = [
+     (self: super: {
+       neovim = super.neovim.override {
+         viAlias = true;
+         vimAlias = true;
+       };
+     })
+   ];
+
 
   programs.neovim = {
-    enable = true;
-    defaultEditor = true;
+    enable = true; #this overwrites vim with neovim
+    viAlias = true; 
+#     plugins = [
+#     {
+#       plugin = nvim-colorizer-lua;
+#       config = packadd! nvim-colorizer.lua
+#       lua require 'colorizer'.setup();
+#       #there is something about erros when using default packages: https://nixos.wiki/wiki/Neovim
+#     }
+#   ];
+
   };
+
 
   # Configure network proxy if necessary
   #networking.proxy.default = "http://user:password@proxy:port/";
@@ -90,6 +110,7 @@
 
   };
   # users.users.tassilo.shell = pkgs.zsh;
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
