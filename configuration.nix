@@ -2,16 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    "${
-      fetchTarball
-      "https://github.com/NixOS/nixos-hardware/archive/936e4649098d6a5e0762058cb7687be1b2d90550.tar.gz"
-    }/raspberry-pi/4"
-    <home-manager/nixos>
+    # "${
+    #   fetchTarball
+    #   "https://github.com/NixOS/nixos-hardware/archive/936e4649098d6a5e0762058cb7687be1b2d90550.tar.gz"
+    # }/raspberry-pi/4"
+    # <home-manager/nixos>
     ./vim.nix
   ];
   #test eve
@@ -97,11 +97,11 @@
     shell = pkgs.zsh;
   };
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-  };
-  home-manager.users.tassilo = { imports = [ ./home.nix ]; };
+  # home-manager = {
+  #   useGlobalPkgs = true;
+  #   useUserPackages = true;
+  #   users.tassilo = { imports = [ ./home.nix ]; };
+  # };
   users.users.root = {
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCQSROiZcNSIT0jynq6EXEa6ne9ApY0OUfh96qLBDL4pUsFW3KhHouiC9weQp31QXxckTC7rdvSNe6YkchrpT0KHi/tkTmgAoYX9pQv0guYUymOinj95Q+PJYMviotRzVlpB01GcZ/XlTaUZZV0HgUlto8TiMX2ILAbxvHzo1a0GNUw4xBBEZvOg2xSL26rcogqKibMv9jothkEVLRHydrNWzGZtXopOk1eGXh6qOl8bVB38XuZK3AHyqJtfUZb5Zj8nkKPrHn9spVpyt8J4xb43tTHKvtwWGWTTZixZBBUgugHAhgQIAaP/3T0Dw2gndPsyhmqZeO0Iy6Lv9r1fsUxzgh2PPjjmP/AZtphU9lCGx7Gy6+FahsYlXPPGEZRljn64jN9v4u15xTx6cmn0LuxvTrntM6p+ruIPzWVrNK/4XQwFjlbDO1UD/ToePoUaKtNR5AngeeTp/9/wObmfwolJQgx4miq/Jvsdx0+FlIX8hzAU4hjDMFNd1UonI/9f3M= root@tassilo-ThinkPad-E15-Gen-2"
