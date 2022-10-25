@@ -1,10 +1,7 @@
 {
   description = "A very basic flake";
 
-  inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.05";
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-  };
+  inputs = { nixpkgs.url = "nixpkgs/nixos-22.05"; };
   outputs = { self, nixpkgs }:
     let
       system = "x86_64-linux";
@@ -12,6 +9,7 @@
         inherit system;
         config.allowUnfree = true;
       };
+      lib = nixpkgs.lib;
     in {
       nixosConfiguration = {
         raspi = lib.nixos.System {
