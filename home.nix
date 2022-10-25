@@ -20,6 +20,7 @@
     htop
     zsh-autosuggestions
     zsh-syntax-highlighting
+    trash-cli
 
   ];
 
