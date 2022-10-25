@@ -33,31 +33,29 @@
   networking.useDHCP = false;
   networking.interfaces.eth0.useDHCP = true;
   networking.interfaces.wlan0.useDHCP = true;
-  
-   nixpkgs.overlays = [
-     (self: super: {
-       neovim = super.neovim.override {
-         viAlias = true;
-         vimAlias = true;
-       };
-     })
-   ];
 
+  nixpkgs.overlays = [
+    (self: super: {
+      neovim = super.neovim.override {
+        viAlias = true;
+        vimAlias = true;
+      };
+    })
+  ];
 
   programs.neovim = {
-    enable = true; #this overwrites vim with neovim
-    viAlias = true; 
-#     plugins = [
-#     {
-#       plugin = nvim-colorizer-lua;
-#       config = packadd! nvim-colorizer.lua
-#       lua require 'colorizer'.setup();
-#       #there is something about erros when using default packages: https://nixos.wiki/wiki/Neovim
-#     }
-#   ];
+    enable = true; # this overwrites vim with neovim
+    viAlias = true;
+    #     plugins = [
+    #     {
+    #       plugin = nvim-colorizer-lua;
+    #       config = packadd! nvim-colorizer.lua
+    #       lua require 'colorizer'.setup();
+    #       #there is something about erros when using default packages: https://nixos.wiki/wiki/Neovim
+    #     }
+    #   ];
 
   };
-
 
   # Configure network proxy if necessary
   #networking.proxy.default = "http://user:password@proxy:port/";
@@ -103,6 +101,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
   };
+  home-manager.users.tassilo = { imports = [ ./home.nix ]; };
   users.users.root = {
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCQSROiZcNSIT0jynq6EXEa6ne9ApY0OUfh96qLBDL4pUsFW3KhHouiC9weQp31QXxckTC7rdvSNe6YkchrpT0KHi/tkTmgAoYX9pQv0guYUymOinj95Q+PJYMviotRzVlpB01GcZ/XlTaUZZV0HgUlto8TiMX2ILAbxvHzo1a0GNUw4xBBEZvOg2xSL26rcogqKibMv9jothkEVLRHydrNWzGZtXopOk1eGXh6qOl8bVB38XuZK3AHyqJtfUZb5Zj8nkKPrHn9spVpyt8J4xb43tTHKvtwWGWTTZixZBBUgugHAhgQIAaP/3T0Dw2gndPsyhmqZeO0Iy6Lv9r1fsUxzgh2PPjjmP/AZtphU9lCGx7Gy6+FahsYlXPPGEZRljn64jN9v4u15xTx6cmn0LuxvTrntM6p+ruIPzWVrNK/4XQwFjlbDO1UD/ToePoUaKtNR5AngeeTp/9/wObmfwolJQgx4miq/Jvsdx0+FlIX8hzAU4hjDMFNd1UonI/9f3M= root@tassilo-ThinkPad-E15-Gen-2"
@@ -110,7 +109,6 @@
 
   };
   # users.users.tassilo.shell = pkgs.zsh;
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -186,4 +184,10 @@
       };
     };
   };
+
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = "experimental-features = nix-command flakes";
+  };
+
 }
