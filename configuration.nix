@@ -33,6 +33,10 @@
   networking.useDHCP = false;
   networking.interfaces.eth0.useDHCP = true;
   networking.interfaces.wlan0.useDHCP = true;
+  networking.interfaces.eth0.ipv6.addresses = [{
+    address = "fe00:aa:bb:cc::2";
+    prefixLength = 64;
+  }];
 
   nixpkgs.overlays = [
     (self: super: {
