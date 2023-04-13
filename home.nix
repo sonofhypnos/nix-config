@@ -1,3 +1,6 @@
+# This file is for my Raspberry pi home stuff. The home stuff for my laptop is
+#currently not ported to flakes and is in my dotfiles.
+
 { config, lib, pkgs, ... }: {
 
   # Home Manager needs a bit of information about you and the
@@ -62,7 +65,6 @@
         #    ];
         theme = "robbyrussell";
       };
-
     };
     fzf = {
       enable = true;
