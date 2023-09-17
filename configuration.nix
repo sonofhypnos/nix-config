@@ -129,7 +129,7 @@
     #wallabag
     parted
     borgbackup
-    syncthing
+    #syncthing
     nettools
   ];
 
@@ -160,34 +160,34 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 
-  services = {
-    syncthing = {
-      enable = true;
-      user = "tassilo";
-      openDefaultPorts = true;
-      dataDir =
-        "/home/tassilo/Documents"; # Default folder for new synced folders
-      configDir =
-        "/home/tassilo/.config/syncthing"; # Folder for Syncthing's settings and keys
-      devices = {
-        "pixel" = {
-          id =
-            "YHGCWFP-U2QWKAT-FFQEWBU-WUW2G72-5Q2IZEM-WBLOOD2-3GFRN3D-3JTDIQA";
-        };
-
-        "e15" = {
-          id =
-            "P4T4IFQ-DVMDK4E-FV6JU7T-GZPWHBS-AO5MOE3-ISDJVLX-SSAOINE-S335WQW";
-        };
-      };
-      folders = {
-        "Documents" = {
-          path = "home/tassilo/Documents";
-          devices = [ "pixel" "e15" ];
-        };
-      };
-    };
-  };
+#  services = {
+#    syncthing = {
+#      enable = true;
+#      user = "tassilo";
+#      openDefaultPorts = true;
+#      dataDir =
+#        "/home/tassilo/Documents"; # Default folder for new synced folders
+#      configDir =
+#        "/home/tassilo/.config/syncthing"; # Folder for Syncthing's settings and keys
+#      devices = {
+#        "pixel" = {
+#          id =
+#            "YHGCWFP-U2QWKAT-FFQEWBU-WUW2G72-5Q2IZEM-WBLOOD2-3GFRN3D-3JTDIQA";
+#        };
+#
+#        "e15" = {
+#          id =
+#            "P4T4IFQ-DVMDK4E-FV6JU7T-GZPWHBS-AO5MOE3-ISDJVLX-SSAOINE-S335WQW";
+#        };
+#      };
+#      folders = {
+#        "Documents" = {
+#          path = "home/tassilo/Documents";
+#          devices = [ "pixel" "e15" ];
+#        };
+#      };
+#    };
+#  };
 
   nix = {
     package = pkgs.nixFlakes;
