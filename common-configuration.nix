@@ -7,13 +7,13 @@
 {
   #test eve
 
-  # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
-  # Hardware-specific configurations for 'nixos-laptop'
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
+  # # Hardware-specific configurations for 'nixos-laptop'
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.hostName = "nixos"; # Define your hostname.
+  # #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -24,6 +24,7 @@
   networking.useDHCP = false;
   networking.interfaces.eth0.useDHCP = true;
   networking.interfaces.wlan0.useDHCP = true;
+  networking.interfaces.enp1s0.useDHCP = true;
   networking.interfaces.eth0.ipv6.addresses = [{
     address = "fe00:aa:bb:cc::2";
     prefixLength = 64;
